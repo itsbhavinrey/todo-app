@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:04:49.791Z",
+    "updatedAt": "2025-09-07T16:04:49.791Z"
+  },
+  {
+    "id": 2,
+    "username": "todouser",
+    "email": "todo@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:04:49.829Z",
+    "updatedAt": "2025-09-07T16:04:49.829Z"
+  },
+  {
+    "id": 3,
+    "username": "user1",
+    "email": "user1@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:04:49.916Z",
+    "updatedAt": "2025-09-07T16:04:49.916Z"
+  },
+  {
+    "id": 4,
+    "username": "user2",
+    "email": "user2@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:04:49.919Z",
+    "updatedAt": "2025-09-07T16:04:49.919Z"
+  },
+  {
+    "id": 5,
+    "username": "testuser1757261183644",
+    "email": "test1757261183644@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.678Z",
+    "updatedAt": "2025-09-07T16:06:23.678Z"
+  },
+  {
+    "id": 6,
+    "username": "testuser1757261183690",
+    "email": "test1757261183690@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.692Z",
+    "updatedAt": "2025-09-07T16:06:23.692Z"
+  },
+  {
+    "id": 7,
+    "username": "todouser1757261183709",
+    "email": "todo1757261183709@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.711Z",
+    "updatedAt": "2025-09-07T16:06:23.711Z"
+  },
+  {
+    "id": 8,
+    "username": "todouser1757261183726",
+    "email": "todo1757261183726@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.728Z",
+    "updatedAt": "2025-09-07T16:06:23.728Z"
+  },
+  {
+    "id": 9,
+    "username": "todouser1757261183745",
+    "email": "todo1757261183745@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.747Z",
+    "updatedAt": "2025-09-07T16:06:23.747Z"
+  },
+  {
+    "id": 10,
+    "username": "todouser1757261183760",
+    "email": "todo1757261183760@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.762Z",
+    "updatedAt": "2025-09-07T16:06:23.762Z"
+  },
+  {
+    "id": 11,
+    "username": "todouser1757261183774",
+    "email": "todo1757261183774@example.com",
+    "password": "password123",
+    "createdAt": "2025-09-07T16:06:23.778Z",
+    "updatedAt": "2025-09-07T16:06:23.778Z"
+  }
+]

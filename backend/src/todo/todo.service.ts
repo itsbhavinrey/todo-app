@@ -10,11 +10,12 @@ import { Todo, CreateTodoDto, UpdateTodoDto } from './todo.interface';
 export class TodoService {
   constructor(private readonly jsonDatabase: JsonDatabaseService) {}
 
-  async findAll(): Promise<Todo[]> {
-    return this.jsonDatabase.findAll();
+  async findAll(userId: number): Promise<Todo[]> {
+    const allTodos = await this.jsonDatabase.findAll();
+    return allTodos.filter((todo) => todo.userId === userId);
   }
 
-  async findOne(id: number): Promise<Todo> {
+  async findOne(id: number, userId: number): Promise<Todo> {
     if (!id || id <= 0) {
       throw new BadRequestException('Invalid todo ID');
     }
@@ -23,10 +24,15 @@ export class TodoService {
     if (!todo) {
       throw new NotFoundException(`Todo with ID ${id} not found`);
     }
+
+    if (todo.userId !== userId) {
+      throw new NotFoundException(`Todo with ID ${id} not found`);
+    }
+
     return todo;
   }
 
-  async create(createTodoDto: CreateTodoDto): Promise<Todo> {
+  async create(createTodoDto: CreateTodoDto, userId: number): Promise<Todo> {
     if (!createTodoDto.title || createTodoDto.title.trim().length === 0) {
       throw new BadRequestException('Title is required');
     }
@@ -42,6 +48,7 @@ export class TodoService {
     }
 
     const todoData = {
+      userId,
       title: createTodoDto.title.trim(),
       description: createTodoDto.description?.trim() || '',
       completed: false,
@@ -50,13 +57,17 @@ export class TodoService {
     return this.jsonDatabase.create(todoData);
   }
 
-  async update(id: number, updateTodoDto: UpdateTodoDto): Promise<Todo> {
+  async update(
+    id: number,
+    updateTodoDto: UpdateTodoDto,
+    userId: number,
+  ): Promise<Todo> {
     if (!id || id <= 0) {
       throw new BadRequestException('Invalid todo ID');
     }
 
-    // Check if todo exists
-    await this.findOne(id);
+    // Check if todo exists and belongs to user
+    await this.findOne(id, userId);
 
     const updateData: Partial<Todo> = {};
 
@@ -94,10 +105,13 @@ export class TodoService {
     return updatedTodo;
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number, userId: number): Promise<void> {
     if (!id || id <= 0) {
       throw new BadRequestException('Invalid todo ID');
     }
+
+    // Check if todo exists and belongs to user
+    await this.findOne(id, userId);
 
     const deleted = await this.jsonDatabase.remove(id);
     if (!deleted) {
@@ -105,8 +119,8 @@ export class TodoService {
     }
   }
 
-  async toggleComplete(id: number): Promise<Todo> {
-    const todo = await this.findOne(id);
-    return this.update(id, { completed: !todo.completed });
+  async toggleComplete(id: number, userId: number): Promise<Todo> {
+    const todo = await this.findOne(id, userId);
+    return this.update(id, { completed: !todo.completed }, userId);
   }
 }
