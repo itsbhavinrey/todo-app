@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "title": "Learn NestJS",
+    "description": "Build a todo app with NestJS",
+    "completed": false,
+    "createdAt": "2025-09-07T15:53:31.738Z",
+    "updatedAt": "2025-09-07T15:53:31.738Z"
+  }
+]
