@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -188,8 +188,9 @@ function EditTodoContent({ id }: { id: number }) {
 	);
 }
 
-export default function EditTodoPage({ params }: { params: { id: string } }) {
-	const id = parseInt(params.id);
+export default function EditTodoPage({ params }: { params: Promise<{ id: string }> }) {
+	const resolvedParams = use(params);
+	const id = parseInt(resolvedParams.id);
 
 	if (isNaN(id)) {
 		return (
