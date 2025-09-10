@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useUpdateTodo, useToggleTodo, useDeleteTodo } from '../../hooks/use-todos';
 import type { Todo } from '../../types';
 
@@ -117,20 +118,20 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
 							</div>
 						</div>
 					) : (
-						<div>
+						<Link href={`/todos/${todo.id}`} className='block hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg p-2 -m-2 transition-colors'>
 							<h3 className={`text-lg font-medium ${todo.completed ? 'text-gray-500 dark:text-gray-400 line-through' : 'text-gray-900 dark:text-white'}`}>{todo.title}</h3>
 							{todo.description && <p className={`mt-1 text-sm ${todo.completed ? 'text-gray-400 dark:text-gray-500' : 'text-gray-600 dark:text-gray-300'}`}>{todo.description}</p>}
 							<p className='mt-2 text-xs text-gray-500 dark:text-gray-400'>
 								Created: {formatDate(todo.createdAt)}
 								{todo.updatedAt !== todo.createdAt && <span> • Updated: {formatDate(todo.updatedAt)}</span>}
 							</p>
-						</div>
+						</Link>
 					)}
 				</div>
 
 				{!isEditing && (
 					<div className='flex space-x-2'>
-						<button onClick={() => setIsEditing(true)} className='p-1 text-gray-400 hover:text-blue-600 transition-colors' title='Edit todo'>
+						<Link href={`/todos/${todo.id}/edit`} className='p-1 text-gray-400 hover:text-blue-600 transition-colors' title='Edit todo'>
 							<svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
 								<path
 									strokeLinecap='round'
@@ -139,7 +140,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
 									d='M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
 								/>
 							</svg>
-						</button>
+						</Link>
 						<button onClick={handleDelete} disabled={deleteTodo.isPending} className='p-1 text-gray-400 hover:text-red-600 transition-colors' title='Delete todo'>
 							<svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
 								<path

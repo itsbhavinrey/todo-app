@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAuthStore } from '../../store/auth-store';
 import { queryClient } from '../../lib/query-client';
 import { Header } from '../../components/layout/Header';
-import { AddTodoForm } from '../../components/todo/AddTodoForm';
 import { TodoList } from '../../components/todo/TodoList';
 
 function TodosContent() {
@@ -57,7 +57,11 @@ function TodosContent() {
 					<p className='text-gray-600 dark:text-gray-400'>Organize your tasks and stay productive</p>
 				</div>
 
-				<AddTodoForm />
+				<div className='mb-6'>
+					<Link href='/todos/create' className='inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200'>
+						+ Create New Todo
+					</Link>
+				</div>
 				<TodoList />
 			</main>
 		</div>
